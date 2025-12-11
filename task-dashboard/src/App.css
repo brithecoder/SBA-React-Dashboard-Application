@@ -1,0 +1,687 @@
+
+/* APP CSS */
+:root {
+    --amber-gold: #ffbe0bff;
+    --blaze-orange: #fb5607ff;
+    --neon-pink: #ff006eff;
+    --blue-violet: #8338ecff;
+    --azure-blue: #3a86ffff;
+    --priority-low-color: #4CAF50;    /* Green */
+    --priority-medium-color: #FFC107; /* Amber/Yellow */
+    --priority-high-color: #F44336;   /* Red */
+    
+    /* Light Theme Colors */
+    --color-primary: var(--azure-blue);     /* For main buttons/accents */
+    --color-accent: var(--blaze-orange);
+    --color-bg-primary: var(--amber-gold);    /* For high priority/alerts */
+    --color-background: #f8f8f8;            /* Light background */
+    --color-text: #333333;
+    --color-dark-text: #333333;       /* Dark text for light backgrounds */
+}
+
+.dark {
+    --color-bg-primary: var(--neon-pink);    
+   --color-light-text: #ffffff;      /* White text for dark backgrounds */
+    --color-bg-secondary: #2c2c44;          /* Darker component backgrounds */
+    --color-text-primary: #f0f0f0;          /* Light text */
+    --color-border: #444466;
+    --color-accent-btn: var(--amber-gold);  /* Primary buttons use Amber Gold */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    transition: background-color 0.4s, color 0.4s;
+}
+
+#root {
+  margin: 0 auto;
+  padding: 2px;
+  text-align: center; 
+} 
+#appContainer{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: neon-pink;
+}
+
+/* NavBar CSS */
+
+.app-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+    background-color: var(--color-primary);
+    border-radius: 12px;
+    padding: 15px 40px; /* Generous padding */
+    height: 60px; /* Fixed height for a polished look */
+    font-weight: 600;
+    font-family: "Caveat", cursive;
+    /* Subtle border-bottom that respects the theme */
+    border-bottom: 2px solid var(--color-border);
+  
+    /* Add a gentle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-logo {
+     color: white;
+    font-size: 3.4rem; 
+    font-weight: 800; /* Extra bold text */
+    letter-spacing: 0.5px;
+    /* Add a subtle text shadow for a 3D/neon effect */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-button {
+    padding: 10px 20px;
+    
+    background-color: var(--blue-violet); 
+    color: white; /* White text for contrast */
+    border: none;
+    border-radius: 20px; /* Very rounded pill shape */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    
+    /* Button shadow */
+    box-shadow: 0 4px 8px rgba(131, 56, 236, 0.4); /* Shadow color based on Blue Violet */
+    
+    transition: all 0.2s ease-in-out;
+}
+.theme-toggle-button:hover {
+    /* Subtle color shift on hover */
+    background-color: var(--neon-pink); 
+    
+    /* Lift and enlarge on hover */
+    transform: translateY(-1px) scale(1.02); 
+    box-shadow: 0 6px 10px rgba(255, 0, 110, 0.5); /* Shadow color based on Neon Pink */
+}
+
+/* --- Dark Mode Adjustments for the Button --- */
+.dark .theme-toggle-button {
+    /* Use Amber Gold as the main color for the button in dark mode */
+    background-color: var(--amber-gold); 
+    color: var(--color-bg-secondary); /* Use the dark background color for contrast */
+    box-shadow: 0 4px 8px rgba(255, 190, 11, 0.4); /* Shadow based on Amber Gold */
+}
+
+.dark .theme-toggle-button:hover {
+    /* Use Blaze Orange on hover in dark mode */
+    background-color: var(--blaze-orange); 
+    box-shadow: 0 6px 10px rgba(251, 86, 7, 0.6); /* Shadow based on Blaze Orange */
+}
+
+
+
+
+
+/* Search and Filter CSS*/ 
+
+.task-filter-container {
+    background-color: var(--blaze-orange); 
+    
+    padding: 15px 30px; /* Vertical and horizontal padding */
+    margin-bottom: 25px; /* Space below the filter bar and the dashboard layout */
+    border-radius: 12px;
+    margin-top: 12px;
+    
+    display: flex;
+    gap: 20px; /* Space between filter groups */
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on small screens (important for mobile) */
+    
+    /* Subtle shadow for a lifted effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Style for individual filter groups (Search, Status, Priority) */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style for the search group specifically */
+.filter-search {
+    flex-grow: 1; /* Allows the search bar to take up available space */
+    min-width: 250px; /* Ensures search bar is usable */
+}
+
+/* Filter Labels */
+.task-filter-container label {
+    font-weight: 700;
+    color: white; /* White text for contrast */
+    white-space: nowrap; /* Keeps "Search Tasks" on one line */
+}
+
+/* Styling for Input and Select fields */
+.task-filter-container input[type="text"],
+.task-filter-container select {
+    padding: 8px 12px;
+    border: 2px solid var(--blue-violet); /* Violet border */
+    border-radius: 8px; /* Soft, rounded edges */
+    background-color: #fff; /* White background for input/select */
+    color: #333;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus State */
+.task-filter-container input:focus,
+.task-filter-container select:focus {
+    border-color: var(--neon-pink); /* Neon Pink highlight on focus */
+    box-shadow: 0 0 5px rgba(255, 0, 110, 0.7);
+    outline: none;
+}
+
+
+/* Dark Mode Overrides */
+
+
+.dark .task-filter-container {
+    /* Change background to a dark, contrasting color (e.g., Blue Violet) */
+    background-color: var(--blue-violet); 
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark .task-filter-container label {
+    /* Use Amber Gold for labels in dark mode for contrast */
+    color: var(--amber-gold); 
+}
+
+.dark .task-filter-container input[type="text"],
+.dark .task-filter-container select {
+    background-color: #444; /* Darker background for inputs */
+    border-color: var(--neon-pink); 
+    color: var(--color-text-primary); /* Light text color */
+}
+
+
+/* Task form and List containter CSS */ 
+
+.task-layout-container {
+    display: flex;
+    max-width: 1400px; /* Max width for a large screen */
+    margin: 20px auto;
+    gap: 20px; /* Space between the two columns */
+    align-items: flex-start; /* Aligns content to the top */
+}
+
+/* Set the Form (Left Column) to take a fixed or proportional width */
+.task-layout-form {
+    flex: 0 0 350px; /* Fixed width of 350px */
+    padding: 15px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 4px solid azure-blue /* Just for visualization */
+}
+
+/* Set the List (Right Column) to take up all remaining space */
+.task-layout-list {
+    flex: 1; /* Takes up the rest of the available space */
+    padding: 15px;
+    background-color: white;
+     border-radius: 12px;
+     border: 1px solid #ccc; 
+}
+
+
+
+/* Task form CSS */ 
+
+
+.task-layout-form h2 {
+    /* Use a vibrant color like Neon Pink for a striking title */
+    color: var(--neon-pink); 
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* Form structure adjustments */
+.task-layout-form form {
+    /* Clearer vertical spacing */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label Styling */
+.task-layout-form label {
+    display: block;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    
+    /* Use Blue-Violet for the text/labels to give it a stylish color */
+    color: var(--blue-violet); 
+    text-transform: capitalize;
+}
+
+/* Input, Select, and Textarea Styling */
+.task-layout-form input[type="text"],
+.task-layout-form input[type="date"],
+.task-layout-form select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--color-accent); /* Use theme border color */
+    border-radius: 10px; /* Soft, rounded corners for a gentle look */
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    transition: all 0.3s ease;
+    box-sizing: border-box; 
+    
+    /* Remove default margin from <br /> tags */
+    margin-bottom: 0;
+}
+
+/* Focus State (Vibrant effect when user clicks) */
+.task-layout-form input:focus,
+.task-layout-form select:focus {
+    border-color: var(--azure-blue); /* Azure Blue highlight on focus */
+    box-shadow: 0 0 8px rgba(58, 134, 255, 0.5); /* Soft, glowing shadow */
+    outline: none;
+}
+
+/* Textarea styling (if you switch description to textarea) */
+.task-layout-form textarea {
+    /* Ensure textarea inherits the same style */
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Form Button Styling */
+.task-layout-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    
+    /* Use a high-impact color like Neon Pink or Amber Gold for the main button */
+    background-color: var(--neon-pink); 
+    color: white; /* White text for maximum contrast */
+    
+    border: none;
+    border-radius: 12px; /* Nicely rounded button */
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    
+    /* Add a subtle shadow for a lifted look */
+    box-shadow: 0 4px 8px rgba(255, 0, 110, 0.4); 
+}
+
+.task-layout-form button[type="submit"]:hover {
+    /* Switch color to Blue Violet on hover for visual feedback */
+    background-color: var(--blue-violet); 
+    
+    /* Lift effect */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(131, 56, 236, 0.6);
+}
+
+
+/* Dark Mode Overrides (if needed) */
+
+
+.dark .task-layout-form h2 {
+    color: var(--blue-violet); /* Switch title color to Amber Gold */
+}
+
+.dark .task-layout-form label {
+    color: var(--neon-pink); /* Switch label color to Neon Pink */
+}
+
+.dark .task-layout-form button[type="submit"] {
+    background-color: var(--azure-blue); /* Amber Gold button in dark mode */
+    box-shadow: 0 4px 8px rgba(255, 190, 11, 0.4);
+}
+
+.dark .task-layout-form .error-message {
+    color: var(--blaze-orange); /* Use Blaze Orange for error messages in dark mode */
+}
+
+/* Task List CSS*/
+
+.task-list {
+    /* Ensures the list takes the full width of its parent (.task-layout-list) */
+    width: 100%; 
+    /* Adds consistent vertical space between the task items */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Matches the margin-bottom on the individual task-item */
+    padding: 0; /* Remove any default list padding */
+    list-style: none; 
+}
+
+/* Style for when there are no tasks */
+.task-list p {
+    font-style: italic;
+    color: var(--color-text-primary);
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-bg-secondary);
+}
+
+/* Styles for the task list heading (if you put it outside the TaskList component) */
+.task-layout-list h3 {
+    font-size: 1.6rem;
+    color: var(--blue-violet); 
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/*  Individual Task Item Styling */
+
+.task-item {
+    /* Use theme variables for background and text */
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    
+    border-left: 7px solid transparent; 
+}
+
+.task-item:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Status-Specific Border Colors */
+/* (Matching the badge colors but applied to the card border) */
+
+
+.task-status-pending {
+    border-left-color: var(--amber-gold); 
+}
+.task-status-in-progress {
+    border-left-color: var(--azure-blue); 
+}
+.task-status-completed {
+    border-left-color: var(--blue-violet); /* Use the softer violet for completed */
+    opacity: 0.7; /* Optionally dim completed tasks */
+}
+
+/* Header and Badges */
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--color-text-primary);
+}
+
+.task-badges {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0; /* Prevents badges from shrinking */
+}
+
+/* Badge Base Styling (Already defined, but confirming) */
+.status-badge, .priority-badge {
+    padding: 4px 10px;
+    border-radius: 12px; /* Pill-shaped badges */
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.priority-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    
+    /* Ensure no text selection issues */
+    user-select: none; 
+}
+
+/* --- PRIORITY LOW (GREEN) --- */
+.priority-low {
+    background-color: var(--priority-low-color);
+    color: var(--color-light-text); /* White text on dark green */
+}
+
+/* --- PRIORITY MEDIUM (YELLOW) --- */
+.priority-medium {
+    background-color: var(--priority-medium-color);
+    color: var(--color-dark-text); /* Dark text on light yellow/amber */
+}
+
+/* --- PRIORITY HIGH (RED) --- */
+.priority-high {
+    background-color: var(--priority-high-color);
+    color: var(--color-light-text); /* White text on dark red */
+}
+
+
+/* Description and Footer */
+
+.task-description {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed var(--color-border); /* Dashed separator line */
+    padding-top: 10px;
+}
+
+.task-due-date {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-text-primary);
+}
+
+
+/* Action Buttons */
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px; /* Highly rounded buttons */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Status Change Button */
+.status-change {
+    background-color: var(--azure-blue);
+    color: white;
+}
+.status-change:hover {
+    background-color: var(--blue-violet);
+    transform: translateY(-1px);
+}
+
+/* Delete Button */
+.delete {
+    background-color: var(--blaze-orange); /* Use Blaze Orange for the destructive action */
+    color: white;
+}
+.delete:hover {
+    background-color: var(--neon-pink);
+    transform: translateY(-1px);
+}
+ /* Dark Mode Overrides for Task Items and Badges */
+
+.dark .priority-low {
+    /* Use a slightly darker green for better contrast on a dark background */
+    background-color: #388E3C; 
+}
+.dark .priority-medium {
+    /* Use a darker amber/orange */
+    background-color: #FFB300; 
+}
+.dark .priority-high {
+    /* Use a slightly darker red */
+    background-color: #D32F2F; 
+}
+
+
+/* 2. Mobile Layout (Collapse) */
+
+
+/* Use a Media Query to apply styles only when the screen is small (e.g., less than 768px) */
+@media (max-width: 768px) {
+    
+    .task-layout-container {
+        /* Change the flow direction from horizontal (row) to vertical (column) */
+        flex-direction: column;
+        gap: 40px; /* Add more vertical space between form and list */
+    }
+
+    /* Make both the form and the list take up the full width of the screen */
+    .task-layout-form,
+    .task-layout-list {
+        flex: 0 0 100%; /* Force both to take 100% of the container width */
+        width: 100%;
+        padding: 10px; /* Remove internal padding if desired for full screen width */
+        border: none; /* Remove border in mobile view */
+    }
+     /* Target all input fields and select dropdowns inside the Task Form */
+   .task-layout-form .task-form-container input[type="text"],
+    .task-layout-form .task-form-container input[type="date"],
+    .task-layout-form .task-form-container select,
+    .task-layout-form .task-form-container textarea{
+        align-items: center; 
+        box-sizing: border-box; /* Ensure padding/border stays within 90% width */
+        width: 90%;
+        padding: 12px;
+        margin-left: 12px;
+        margin-right: 12px;
+        /* Reduce Font Size */
+        font-size: 0.95rem; /* Slightly smaller than desktop 1rem */
+        
+        /* Optional: Ensure corners are still soft */
+        border-radius: 6px; 
+        
+    }
+
+    /* Reduce the size of the Add Task button slightly */
+   .task-layout-form .task-form-container button[type="submit"] {
+        /* padding: 8px 15px; */
+        font-size: 1rem;
+        width: 90%;
+        margin-bottom: 12px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+     
+    /* Make the entire container stack its direct children vertically */
+    .task-filter-container {
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 15px; 
+        padding: 15px;
+    }
+
+    /* Force all filter groups (Search, Status, Priority) to take the full width */
+    .filter-group,
+    .filter-search {
+        width: 100%;
+        /* Change nested labels/inputs to stack vertically inside the group for better control */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px; /* Small gap between label and input */
+    }
+    
+    /* Ensure the search input and select fields take the full width of the filter group */
+    .task-filter-container input[type="text"],
+    .task-filter-container select {
+        width: 100%;
+         box-sizing: border-box; /* Crucial: padding/border stays inside the 100% width */
+    }
+
+    /* Remove the search input's flex-grow property on mobile */
+    .filter-search input {
+        flex-grow: 1;
+     } 
+
+
+     /* 1. Make the Card take up more space and be centered */
+    .task-item {
+        width: 80%; /* Make the task item take up 80% of the container width */
+        margin: 0 auto 15px auto;  /* Center the card and maintain bottom margin */
+        max-width: none;  
+        padding: 15px; 
+        margin-bottom: 12px;
+        
+        /* Reduce font size for the main content (title/description) */
+        font-size: 0.95rem; 
+    }
+    
+    /* 2. Style the Task Header (Title and Edit/Delete Button) */
+   .task-header {
+        display: flex; /* Make sure it's explicitly flex */
+         flex-direction: row; 
+        flex-wrap: nowrap; 
+        justify-content: space-between; /* Push title to one side, buttons to the other */
+        gap: 10px;
+        align-items: flex-start; 
+        width: 100%; /* Ensure the header fills the card width */
+    }
+
+    /* 3. Restructure the Footer (Status, Priority, Due Date) */
+    .task-footer {
+    
+        display: flex;
+        flex-direction: row; 
+        flex-wrap: wrap; /* Allows labels to wrap onto the next line if needed */
+        
+        margin-top: 10px;
+        gap: 15px; /* Space between the status, priority, and due date labels */
+    }
+    .task-due-date, 
+    .task-status-label {
+        font-size: 0.85rem; /* Make the metadata smaller */
+    }
+    
+    /* 5. Reduce the size of the buttons/icons*/
+    .task-item button {
+      margin-left: 20px;
+        font-size: 0.85rem;
+    }
+
+}
+
+
+
+
+
