@@ -356,6 +356,10 @@ body {
     background-color: var(--azure-blue); /* Amber Gold button in dark mode */
     box-shadow: 0 4px 8px rgba(255, 190, 11, 0.4);
 }
+.dark .task-layout-form button[type="submit"]:hover {
+    background-color: var(--blue-violet); /* Amber Gold button in dark mode */
+    box-shadow: 0 4px 8px rgba(255, 190, 11, 0.4);
+}
 
 .dark .task-layout-form .error-message {
     color: var(--blaze-orange); /* Use Blaze Orange for error messages in dark mode */
