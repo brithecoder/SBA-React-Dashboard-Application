@@ -28,6 +28,17 @@
     --color-accent-btn: var(--amber-gold);  /* Primary buttons use Amber Gold */
 }
 
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;           /* Start fully transparent */
+    transform: translateY(20px); /* Start 20 pixels below its final position */
+  }
+  to {
+    opacity: 1;           /* End fully opaque */
+    transform: translateY(0);    /* End at its final position */
+  }
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: var(--color-bg-primary);
@@ -393,8 +404,8 @@ body {
     margin-bottom: 15px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    
+    transition: box-shadow 0.3s ease;
+    animation: fadeInSlideUp 0.5s ease-out; /* 0.5s duration, smooth easing */
     border-left: 7px solid transparent; 
 }
 

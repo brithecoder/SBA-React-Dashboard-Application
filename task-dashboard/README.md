@@ -23,7 +23,7 @@ Users should be able to:
 - Filter and Search Task 
 - Delete Task 
 - Update Task Status 
-- Reload previous Task via local storage 
+- Reload previous Task via Client-Side Storage
 - use visual indicators as guidance for application 
 
 
